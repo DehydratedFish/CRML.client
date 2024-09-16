@@ -1,19 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter } from "react-router-dom";
-
-import { RouterProvider } from "react-router-dom";
-
-import { SWRConfig } from "swr";
-import axios from 'axios';
-
-import App from "./app";
-import { Overview, CustomerManagement, CustomerDetail } from "./components";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
+import App from "./app";
+import Overview from './components/pages/Overview';
+import CustomerManagement from './components/pages/CustomerManagement';
+import CustomerDetail from './components/pages/CustomerDetail';
 
-const axiosFetcher = (url: string) => axios.get(url).then((response) => response.data);
 
 const router = createBrowserRouter([{
     path: "/",
@@ -28,9 +23,7 @@ const router = createBrowserRouter([{
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <SWRConfig value={{fetcher: axiosFetcher}}>
-            <RouterProvider router={router} />
-        </SWRConfig>
+        <RouterProvider router={router} />
         <ToastContainer />
     </React.StrictMode>,
 )
